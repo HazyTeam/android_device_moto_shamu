@@ -23,7 +23,7 @@ TARGET_CPU_VARIANT := krait
 TARGET_NO_BOOTLOADER := true
 
 # Inline kernel building
-TARGET_KERNEL_CONFIG := hazy_shamu_defconfig
+TARGET_KERNEL_CONFIG := shamu_defconfig
 TARGET_KERNEL_SOURCE := kernel/moto/shamu
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 
@@ -130,6 +130,7 @@ BOARD_SEPOLICY_UNION += \
         bootanim.te \
         bridge.te \
         camera.te \
+        cnd.te \
         device.te \
         domain.te \
         file.te \

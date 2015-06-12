@@ -2,7 +2,7 @@
 TARGET_SCREEN_HEIGHT := 1440
 TARGET_SCREEN_WIDTH := 2560
 
-# Inherit some common CM stuff.
+# Inherit some common Hazy stuff.
 $(call inherit-product, vendor/hazy/configs/common_full_phone.mk)
 
 # Enhanced NFC
@@ -20,5 +20,5 @@ PRODUCT_MODEL := Nexus 6
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=shamu \
-    BUILD_FINGERPRINT=google/shamu/shamu:5.1/LMY47I/1767468:user/release-keys \
-    PRIVATE_BUILD_DESC="shamu-user 5.1 LMY47I 1767468 release-keys"
+    BUILD_FINGERPRINT=google/shamu/shamu:5.1.1/LYZ28E/1914015:user/release-keys \
+    PRIVATE_BUILD_DESC="shamu-user 5.1.1 LYZ28E 1914015 release-keys"
