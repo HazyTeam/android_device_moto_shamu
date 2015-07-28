@@ -1,6 +1,6 @@
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1440
-TARGET_SCREEN_WIDTH := 2560
+TARGET_SCREEN_HEIGHT := 2560
+TARGET_SCREEN_WIDTH := 1440
 
 # Inherit some common Hazy stuff.
 $(call inherit-product, vendor/hazy/configs/common_full_phone.mk)
@@ -17,6 +17,8 @@ DEVICE_PACKAGE_OVERLAYS += device/moto/shamu/overlay-cm
 PRODUCT_NAME := hazy_shamu
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Nexus 6
+
+TARGET_VENDOR := moto
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=shamu \
