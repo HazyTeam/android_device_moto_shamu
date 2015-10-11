@@ -34,7 +34,7 @@ BOARD_RAMDISK_OFFSET     := 0x02000000
 
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=shamu msm_rtb.filter=0x37 ehci-hcd.park=3 utags.blkdev=/dev/block/platform/msm_sdcc.1/by-name/utags utags.backup=/dev/block/platform/msm_sdcc.1/by-name/utagsBackup coherent_pool=8M
 
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset BOARD_RAMDISK_OFFSET --tags_offset BOARD_KERNEL_TAGS_OFFSET
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
 # Shader cache config options
 # Maximum size of the  GLES Shaders that can be cached for reuse.
@@ -69,7 +69,11 @@ WIFI_BUS := PCIE
 
 #Bluetooth defines
 BOARD_HAVE_BLUETOOTH_BCM := true
+ifeq ($(TARGET_PRODUCT),bt_shamu)
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/shamu/bluetooth_extra
+else
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/shamu/bluetooth
+endif
 
 TARGET_NO_RADIOIMAGE := true
 TARGET_BOARD_PLATFORM := msm8084
@@ -79,8 +83,8 @@ TARGET_NO_RPC := true
 TARGET_BOARD_INFO_FILE := device/moto/shamu/board-info.txt
 
 USE_OPENGL_RENDERER := true
-VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
-SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
+VSYNC_EVENT_PHASE_OFFSET_NS := 2500000
+SF_VSYNC_EVENT_PHASE_OFFSET_NS := 0000000
 TARGET_USES_ION := true
 TARGET_HW_DISK_ENCRYPTION := false
 TARGET_CRYPTFS_HW_PATH := device/moto/shamu/cryptfs_hw
@@ -109,62 +113,12 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 
 TARGET_RECOVERY_FSTAB = device/moto/shamu/fstab.shamu
 
-# Ensure f2fstools are built
-ifeq ($(HOST_OS),linux)
-TARGET_USERIMAGES_USE_F2FS := true
-endif
-
 TARGET_RELEASETOOLS_EXTENSIONS := device/moto/shamu
 
 # Support Native Layer RF cutback
 BOARD_USES_CUTBACK_IN_RILD := true
 
-BOARD_SEPOLICY_DIRS += \
-       device/moto/shamu/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-        adspd.te \
-        atfwd.te \
-        bluetooth.te \
-        bluetooth_loader.te \
-        bootanim.te \
-        bridge.te \
-        camera.te \
-        cnd.te \
-        device.te \
-        domain.te \
-        file.te \
-        gsiffd.te \
-        ims.te \
-        irsc_util.te \
-        mdm_helper.te \
-        mediaserver.te \
-        mpdecision.te \
-        netd.te \
-        netmgrd.te \
-        platform_app.te \
-        property.te \
-        property_contexts \
-        qmux.te \
-        radio.te \
-        rild.te \
-        sensors.te \
-        service.te \
-        ss_ramdump.te \
-        surfaceflinger.te \
-        system_app.te \
-        system_server.te \
-        tcmd.te \
-        tee.te \
-        te_macros \
-        thermald.te \
-        time.te \
-        ueventd.te \
-        untrusted_app.te \
-        zygote.te \
-        file_contexts \
-        genfs_contexts \
-        service_contexts
+BOARD_SEPOLICY_DIRS += device/moto/shamu/sepolicy
 
 HAVE_ADRENO_SOURCE:= false
 
@@ -172,6 +126,7 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 
 BOARD_HAS_AUDIO_DSP := true
 
@@ -182,7 +137,4 @@ BOARD_HAL_STATIC_LIBRARIES := libdumpstate.shamu
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-# CMHW
-BOARD_HARDWARE_CLASS := device/moto/shamu/cmhw
-
--include vendor/motorola/shamu/BoardConfigVendor.mk
+-include vendor/moto/shamu/BoardConfigVendor.mk
