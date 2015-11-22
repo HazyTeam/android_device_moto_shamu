@@ -8,6 +8,9 @@ $(call inherit-product, vendor/hazy/configs/common_full_phone.mk)
 # Enhanced NFC
 $(call inherit-product, vendor/hazy/configs/nfc_enhanced.mk)
 
+# Inherit from our Hazy product configuration
+$(call inherit-product, vendor/hazy/configs/common.mk)
+
 # Inherit device configuration
 $(call inherit-product, device/moto/shamu/aosp_shamu.mk)
 
