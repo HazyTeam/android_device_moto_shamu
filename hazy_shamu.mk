@@ -6,8 +6,8 @@ PRODUCT_COPY_FILES += \
     vendor/hazy/prebuilt/bootanimation/hazy.zip:system/media/bootanimation.zip
 
 #LatinIME fixed lib
-PRODUCT_COPY_FILES += \
-    vendor/hazy/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so
+#PRODUCT_COPY_FILES += \
+    #vendor/hazy/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so
 
 # Inherit from our Hazy product configuration
 $(call inherit-product, vendor/hazy/main.mk)
