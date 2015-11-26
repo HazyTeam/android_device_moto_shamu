@@ -13,7 +13,11 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, vendor/hazy/main.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/moto/shamu/device.mk)
+$(call inherit-product, device/moto/shamu/aosp_shamu.mk)
+
+
+DEVICE_PACKAGE_OVERLAYS += device/moto/shamu/overlay
+DEVICE_PACKAGE_OVERLAYS += device/moto/shamu/overlay_bt
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := hazy_shamu
